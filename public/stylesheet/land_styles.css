@@ -1,0 +1,94 @@
+.logo {
+    padding-top : 100px;
+    padding-left : 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+
+}
+
+.logo img {
+    width: 180px;
+    height: 180px;
+    margin : 0px;
+    margin-top:50px;
+    padding-left:150px;
+}
+
+.main-logo{
+    display : flex;
+    color : grey;
+}
+.logo span {
+    font-size: 50px;
+    font-weight: bold;
+    padding-top:50px;
+    padding-left:25px;
+}
+main {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+}
+
+.form{
+    padding-right:1000px;
+    align-content : right;
+    justify-content :space-between;
+
+}
+
+ul{
+    list-style-type : none;
+    display:flex;
+    padding-left : 0px;
+    
+    gap:30px;
+}
+
+#nationality{
+    background : none;
+    width : 200px;
+    border-left:none;
+    border-right:none;
+    border-top : none;
+    color:white;
+    height:60px;
+}
+
+#nationality option{
+    color :black;
+}
+
+#language{
+    background : none;
+    width : 200px;
+    border-left:none;
+    border-right:none;
+    border-top : none;
+    color:white;
+    height:60px;
+}
+
+#language option{
+    color :black;
+}
+#submit-button{                                         
+    width :450px;
+    height : 25px;
+}

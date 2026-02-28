@@ -1,0 +1,43 @@
+<html>
+    <head></head>
+    <body>
+        <div id="cart-items"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const response = await fetch('/api/v1/cart/<User-ID>', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        });
+
+        const cart = await response.json();
+
+        if (response.ok) {
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = ''; // Clear any existing content
+
+            cart.items.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.innerHTML = `
+                    <img src="./uploads/${item.productId.image}" alt="${item.productId.name}" />
+                    <h4>${item.productId.name}</h4>
+                    <p>Price: ${item.price}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                    <button data-product-id="${item.productId._id}">Remove</button>
+                `;
+
+                cartItemsDiv.appendChild(itemDiv);
+            });
+        } else {
+            alert('Failed to load cart: ' + cart.message);
+        }
+    } catch (error) {
+        console.error('Error loading cart:', error);
+        alert('An error occurred while loading the cart.');
+    }
+});
+
+        </script>
+    </body>
+</html>

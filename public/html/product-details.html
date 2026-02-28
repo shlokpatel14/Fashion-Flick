@@ -1,0 +1,137 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="./stylesheet/product-details.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            
+            <div class="main-logo">
+               
+                <a href="index"><img src="./uploads/images/icons/logo.jpg" alt="Fashion Flick Logo"></a>
+                    <span>Fashion<br>Flick</span>    
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="new-arrival">New Arrival</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Kids</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="search-login-cart">
+            <form id="search-form" action="search_results.html" method="get">
+                <input type="text" id="search-input" name="query" placeholder="Search">
+                <button type="submit" style="display: none;"></button> <!-- Hide the default submit button -->
+            </form>
+            <a href="login">Log in</a>
+            <a href="#">Help</a>
+            <a href="checkout"><img src="./uploads/images/icons/shopping-bag.png" alt="Cart"></a>
+        </div>
+    </header>
+
+    <div class="product-details-container" id="product-details">
+        <!-- Product details will be dynamically inserted here -->
+    </div>
+    <form id="add-to-cart-form">
+        <input type="hidden" id="productId" value="PRODUCT_ID_HERE">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1">
+        <button id="add-to-cart" data-product-id="{product._id}">Add to Cart</button>
+    </form>
+
+    <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const productDetailsContainer = document.getElementById('product-details');
+
+        // Extract product ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id'); // No need to encodeURIComponent here
+        
+
+        // Fetch product details from the API
+        fetch(`http://localhost:3000/api/v1/products/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                if (product) {
+                    // Create image element
+                    const productImg = document.createElement('img');
+                    productImg.src = `./uploads/${product.image}`; // Ensure this path is correct
+                    // productImgs.src=`./uploads/${product.images}`;
+                    productImg.alt = product.name;
+                    productImg.className = 'product-image';
+
+                    // Create product info div
+                    const productInfoDiv = document.createElement('div');
+                    productInfoDiv.className = 'product-info';
+
+                    // Add product details
+                    const productName = document.createElement('h1');
+                    productName.textContent = product.name;
+
+                    const productDescription = document.createElement('p');
+                    productDescription.textContent = product.description;
+
+                    const productPrice = document.createElement('p');
+                    productPrice.textContent = `Price: $${product.price}`;
+
+                    const productStock = document.createElement('p');
+                    productStock.textContent = `In Stock: ${product.countInStock}`;
+
+
+
+                    // Append elements to product info div
+                    productInfoDiv.appendChild(productName);
+                    productInfoDiv.appendChild(productDescription);
+                    productInfoDiv.appendChild(productPrice);
+                    productInfoDiv.appendChild(productStock);
+
+                    // Append image and info to the container
+                    productDetailsContainer.appendChild(productImg);
+                    productDetailsContainer.appendChild(productInfoDiv);
+                    // productDetailsContainer.appendChild(productImgs);
+                } else {
+                    productDetailsContainer.textContent = 'Product not found.';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching product details:', error);
+                productDetailsContainer.textContent = 'Failed to load product details.';
+            });
+    });
+// Example of adding a product to the cart using JavaScript and AJAX
+document.getElementById('addToCartButton').addEventListener('click', function() {
+    const productId = document.getElementById('productId').value;
+    const quantity = document.getElementById('quantity').value;
+
+    fetch('api/cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ productId, quantity })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Product added to cart');
+            // Optionally, update cart icon or navigate to cart page
+        } else {
+            alert('Failed to add product to cart');
+        }
+    });
+});
+
+
+
+
+   
+    </script>
+</body>
+</html>

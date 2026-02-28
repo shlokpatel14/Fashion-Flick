@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In / Sign Up</title>
+    <link rel="stylesheet" href="./stylesheet/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image" style=" background: url('./uploads/images/men/Background/background1.jpg') no-repeat center center;"></div>
+        <div class="form-container">
+            <!-- Toggle Form Button -->
+            <button id="toggle-form" class="toggle-button">Switch to Sign Up</button>
+            
+            <!-- Sign In Form -->
+            <form id="sign-in-form" class="form">
+                <h2>Sign In</h2>
+                <label for="signin-email">Email:</label>
+                <input type="email" id="signin-email" name="email" required>
+                <label for="signin-password">Password:</label>
+                <input type="password" id="signin-password" name="password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            
+            <!-- Sign Up Form -->
+            <form id="sign-up-form" class="form hidden">
+                <h2>Sign Up</h2>
+                <label for="signup-firstname">First Name:</label>
+                <input type="text" id="signup-firstname" name="firstname" required>
+                
+                <label for="signup-lastname">Last Name:</label>
+                <input type="text" id="signup-lastname" name="lastname" required>
+                
+                <label for="signup-dob">Date of Birth:</label>
+                <input type="date" id="signup-dob" name="dob" required>
+                
+                <label for="signup-mobile">Mobile Number:</label>
+                <div class="phone-container">
+                    <select id="signup-country-code" name="country_code" required>
+                        <option value="+1">+1 (US)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+91">+91 (IN)</option>
+                        <!-- Add more country codes as needed -->
+                    </select>
+                    <input type="tel" id="signup-mobile" name="mobile" required>
+                </div>
+                
+                <label for="signup-email">Email:</label>
+                <input type="email" id="signup-email" name="email" required>
+                
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" name="password" required>
+                
+                <label for="signup-confirm-password">Confirm Password:</label>
+                <input type="password" id="signup-confirm-password" name="confirm_password" required>
+                
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('toggle-form').addEventListener('click', function () {
+    var signInForm = document.getElementById('sign-in-form');
+    var signUpForm = document.getElementById('sign-up-form');
+    var toggleButton = document.getElementById('toggle-form');
+    var container = document.querySelector('.container');
+    var imageDiv = document.querySelector('.image');
+    var formContainer = document.querySelector('.form-container');
+
+    if (signInForm.classList.contains('hidden')) {
+        signInForm.classList.remove('hidden');
+        signUpForm.classList.add('hidden');
+        toggleButton.textContent = 'Switch to Sign Up';
+        container.insertBefore(imageDiv, formContainer);
+    } else {
+        signInForm.classList.add('hidden');
+        signUpForm.classList.remove('hidden');
+        toggleButton.textContent = 'Switch to Sign In';
+        container.appendChild(imageDiv);
+    }
+});
+document.getElementById('sign-in-form').addEventListener('submit', async function(event) {
+    event.preventDefault();  // Prevent form from submitting the traditional way
+
+    const email = document.getElementById('signin-email').value;
+    const password = document.getElementById('signin-password').value;
+
+    try {
+        const response = await fetch('/api/v1/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Store the JWT token in a cookie
+            localStorage.setItem('userId', data.userId);
+            
+            // Redirect to the desired page, e.g., index.html
+            window.location.href = 'index';
+        } else {
+            alert('Login failed: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    }
+});
+    
+
+    document.getElementById('sign-up-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+    
+        const firstName = document.getElementById('signup-firstname').value;
+        const lastName = document.getElementById('signup-lastname').value;
+        const dob = document.getElementById('signup-dob').value;
+        const countryCode = document.getElementById('signup-country-code').value;
+        const mobile = document.getElementById('signup-mobile').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+        const confirmPassword = document.getElementById('signup-confirm-password').value;
+    
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+            return;
+        }
+    
+        try {
+            const response = await fetch('/api/v1/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    name: `${firstName} ${lastName}`,
+                    email,
+                    password,
+                    phone: `${countryCode} ${mobile}`,
+                    // Include any other necessary fields
+                }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                alert('Registration successful! Please log in.');
+                // Switch to the login form or automatically log the user in
+                document.getElementById('toggle-form').click();
+            } else {
+                alert('Registration failed: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
+    });
+    </script>
+</body>
+</html>

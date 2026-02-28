@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Flick</title>
+    <link rel="stylesheet" href="./stylesheet/land_styles.css">
+</head>
+<body>
+    <main style="background:url(./uploads/images/women/Background/firstimage.jpg)">
+        <div class="logo">
+            <div class="main-logo">
+                <img src="../uploads/images/icons/logo.jpg" alt="Fashion Flick Logo">
+                <span>Fashion<br>Flick</span>
+            </div>
+        </div>
+        <!-- Updated Form -->
+        <form class="form" action="index"  style="align-items:right;"><!--method="GET"-->
+            <ul>
+                <li>
+                    <select id="nationality" name="nations">
+                        <option value="India">India</option>
+                        <option value="USA">USA</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="UK">UK</option>
+                    </select>
+                </li>
+                <li>
+                    <select id="language" name="language">
+                        <option value="English">English</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                    </select>
+                </li>
+            </ul>
+            <button type="submit" id="submit-button" >Submit</button><!--value="Submit"-->
+        </form>
+    </main>
+</body>
+</html>

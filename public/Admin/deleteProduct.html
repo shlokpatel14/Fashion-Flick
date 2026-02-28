@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Product</title>
+    <link rel="stylesheet" href="/stylesheet/styles.css"> <!-- Link to your CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery for easy DOM manipulation -->
+</head>
+<body>
+    <h1>Delete Product</h1>
+    <ul id="product-list"></ul>
+
+    <script>
+        // Function to load all products and display them
+        async function loadProducts() {
+            try {
+                const response = await fetch('http://localhost:3000/api/v1/products');
+                const products = await response.json();
+                
+                const productList = document.getElementById('product-list');
+                productList.innerHTML = ''; // Clear any existing content
+                
+                products.forEach(product => {
+                    const li = document.createElement('li');
+                    li.textContent = `${product.name} - ${product.brand}`;
+                    
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.addEventListener('click', () => deleteProduct(product._id, li));
+                    
+                    li.appendChild(deleteButton);
+                    productList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        // Function to delete a product by its ID
+        async function deleteProduct(productId, listItem) {
+            try {
+                const response = await fetch(`http://localhost:3000/api/v1/products/${productId}`, {
+                    method: 'DELETE'
+                });
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Product deleted successfully!');
+                    listItem.remove(); // Remove the product item from the list
+                } else {
+                    alert(`Failed to delete product: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                alert('An error occurred while deleting the product.');
+            }
+        }
+
+        // Load products when the page is loaded
+        window.onload = loadProducts;
+    </script>
+</body>
+</html>

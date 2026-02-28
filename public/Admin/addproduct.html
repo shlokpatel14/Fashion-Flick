@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <style>
+        /* Optional: Simple styling for the form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<header><h3><b><a href="deleteProduct.html">Delete Product</a></b></h3></header>
+<div class="container">
+    <h1>Add New Product</h1>
+    <form id="add-product-form" enctype="multipart/form-data">
+        <div>
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" >
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" ></textarea>
+        </div>
+        <div>
+            <label for="richDescription">Rich Description:</label>
+            <textarea id="richDescription" name="richDescription"></textarea>
+        </div>
+        <div>
+            <label for="brand">Brand:</label>
+            <input type="text" id="brand" name="brand">
+        </div>
+        <div>
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" >
+        </div>
+        <div>
+            <label for="category">Category ID:</label>
+            <input type="text" id="category" name="category" >
+        </div>
+        <div>
+            <label for="countInStock">Count In Stock:</label>
+            <input type="number" id="countInStock" name="countInStock" >
+        </div>
+        <div>
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" step="0.1">
+        </div>
+        <div>
+            <label for="numReviews">Number of Reviews:</label>
+            <input type="number" id="numReviews" name="numReviews">
+        </div>
+        <div>
+            <label for="isFeatured">Is Featured:</label>
+            <input type="checkbox" id="isFeatured" name="isFeatured">
+        </div>
+        <div>
+            <label for="isRecent">Is Recent:</label>
+            <input type="checkbox" id="isRecent" name="isRecent">
+        </div>
+        <div>
+            <label for="image">Product Image:</label>
+            <input type="file" id="image" name="image" accept="image/*"> <!-- Main image -->
+        </div>
+        <div>
+            <label for="images">Product images:</label>
+            <input type="file" id="images" name="images" accept="image/*" multiple> <!-- Additional images -->  
+        </div>
+
+        <button type="submit">Add Product</button>
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/* css/styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #EEE;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.search-login-cart {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-login-cart input {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.search-login-cart a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.search-login-cart img {
+    width: 30px;
+    height: 30px;
+}
+
+.images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 60px; /* Adjust if header is overlapping */
+}
+
+.images img {
+    width: 100%;
+    height: auto;
+}
+
+.footer-container {
+    padding: 10px;
+    text-align: center;
+    background: #333; /* Adjust background color if needed */
+}
+
+.newsletter-button {
+    padding: 10px 20px;
+    background-color: #FF5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.newsletter-button:hover {
+    background-color: #ff451a;
+}
