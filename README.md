@@ -96,9 +96,13 @@ Communication is handled using REST APIs over HTTP/HTTPS protocols.
 ---
 
 ## 📸 Screenshots
-<img width="764" height="409" alt="image" src="https://github.com/user-attachments/assets/ff434786-5b02-4969-a5d6-015a444b4bee" />
+<img width="764" height="409" alt="image" src="https://github.com/user-attachments/assets/ff434786-5b02-4969-a5d6-015a444b4bee" /></br>
+<h4 align='center'>
 home page
-<img width="621" height="291" alt="image" src="https://github.com/user-attachments/assets/4ce4191a-4aad-403c-83ec-ad46bbc6ab17" />
+</h4>
+<img width="621" height="291" alt="image" src="https://github.com/user-attachments/assets/4ce4191a-4aad-403c-83ec-ad46bbc6ab17" /></br>
+<h4 align='center'>
 Cart
+</h4>
 
 
