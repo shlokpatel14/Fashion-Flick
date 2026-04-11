@@ -57,7 +57,7 @@ The project provides a seamless online shopping experience for customers while o
 - JSON Web Token (JWT)
 
 ### Database
-- (Add your database here: MongoDB / MySQL)
+- I used mongodb as database . You can use any platform as database . As mongodb can be used  online so need to store data on local system.
 
 ### Tools & Technologies
 - Git & GitHub
@@ -96,11 +96,11 @@ Communication is handled using REST APIs over HTTP/HTTPS protocols.
 ---
 
 ## 📸 Screenshots
-<img width="764" height="409" alt="image" src="https://github.com/user-attachments/assets/ff434786-5b02-4969-a5d6-015a444b4bee" /></br>
+<img width="764" height="409" alt="image" src="https://github.com/user-attachments/assets/ff434786-5b02-4969-a5d6-015a444b4bee" align='center'/></br>
 <h4 align='center'>
 home page
 </h4>
-<img width="621" height="291" alt="image" src="https://github.com/user-attachments/assets/4ce4191a-4aad-403c-83ec-ad46bbc6ab17" /></br>
+<img width="621" height="291" alt="image" src="https://github.com/user-attachments/assets/4ce4191a-4aad-403c-83ec-ad46bbc6ab17" align='center'/></br>
 <h4 align='center'>
 Cart
 </h4>
